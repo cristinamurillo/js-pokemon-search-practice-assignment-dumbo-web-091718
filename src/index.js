@@ -21,11 +21,20 @@ document.addEventListener('DOMContentLoaded', () => {
       filteredPokemon = POKEMON.filter(function(pokemon){
         return pokemon.name.includes(word) 
       })
-      console.log(filteredPokemon)
+     if (filteredPokemon.length < 1){
+      noPokemon()
+     } else {
+      displayPokemon(filteredPokemon)
+     }
 
-    displayPokemon(filteredPokemon)
+    
 
   })
+
+  function noPokemon(){
+    divContainer.innerHTML = ""
+    divContainer.innerHTML = '<p></p><center>There are no Pokémon here</center><p></p>'
+  }
 
   divContainer.addEventListener('click', function(event){
   
