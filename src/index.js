@@ -34,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // debugger 
         return pokemon.id === parseInt(event.target.dataset.id)
       })
-      console.log(thePokemon)
       
       if (event.target.src === thePokemon.sprites.front){
         event.target.src = thePokemon.sprites.back
