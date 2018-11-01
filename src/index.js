@@ -27,12 +27,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })
 
+  divContainer.addEventListener('click', function(event){
+  
+    if(event.target.className = 'toggle-sprite'){
+      thePokemon = POKEMON.find(function(pokemon){
+        // debugger 
+        return pokemon.id === parseInt(event.target.dataset.id)
+      })
+      console.log(thePokemon)
+      
+      if (event.target.src === thePokemon.sprites.front){
+        event.target.src = thePokemon.sprites.back
+      } else {
+        event.target.src = thePokemon.sprites.front
+      }
+    }
+  })
+
+
   //display the pokemon, outside of event listener hehe
 
   function displayPokemon(pokemons){
     divContainer.innerHTML = ""
     pokemons.forEach(function(pokemon){
-   
       let outerDiv = document.createElement('div')
       outerDiv.className = 'pokemon-container'
       divContainer.appendChild(outerDiv)
@@ -45,6 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
       characterName.className ='center-text'
       characterName.innerText = `${pokemon.name}`
       innerDiv.appendChild(characterName)
+
+      let pokeImage = document.createElement('img')
+      pokeImage.setAttribute('data-id', `${pokemon.id}`)
+      pokeImage.setAttribute('data-action', 'flip')
+      pokeImage.className = 'toggle-sprite'
+      pokeImage.src =`${pokemon.sprites.front}`
+      innerDiv.appendChild(pokeImage)
 
   })
 
